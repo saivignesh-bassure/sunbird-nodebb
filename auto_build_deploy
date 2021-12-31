@@ -27,12 +27,12 @@ node('build-slave') {
 
             //  stage('Build') 
             env.NODE_ENV = "build"
-            sh("git clone https://github.com/NodeBB/NodeBB.git -b v1.16.0")
+            sh("git clone https://github.com/NodeBB/NodeBB.git -b v1.18.6")
             sh("cp Dockerfile NodeBB")
             sh("cp build.sh NodeBB")
             print "Environment will be : ${env.NODE_ENV}"
             sh('chmod 777 NodeBB/build.sh')
-            sh("bash ./NodeBB/build.sh ${build_tag}_v1.16.0 ${env.NODE_NAME} ${hub_org}")
+            sh("bash ./NodeBB/build.sh ${build_tag}_v1.18.6 ${env.NODE_NAME} ${hub_org}")
 
             //    stage('ArchiveArtifacts') 
             archiveArtifacts "metadata.json"
