@@ -7,7 +7,7 @@ ENV NODE_ENV $NODE_ENV
 
 COPY NodeBB/install/package.json /usr/src/app/package.json
 COPY NodeBB/ /usr/src/app
-RUN npm install --only=prod && \
+RUN npm install && \
     npm cache clean --force
 
 
@@ -16,7 +16,6 @@ RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#rele
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#master
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#main
 RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#master
-
 
 ENV NODE_ENV=production \
     daemon=false \
