@@ -7,7 +7,7 @@ ENV NODE_ENV $NODE_ENV
 
 COPY NodeBB/install/package.json /usr/src/app/package.json
 COPY NodeBB/ /usr/src/app
-RUN npm install && \
+RUN npm install --only=prod && \
     npm cache clean --force
 
 
@@ -16,6 +16,9 @@ RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#rele
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#master
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#main
 RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#master
+
+# Nodebb was not taking the latest version of mentions plugin, That's why we added install command here.
+RUN npm install https://github.com/julianlam/nodebb-plugin-mentions.git#master
 
 ENV NODE_ENV=production \
     daemon=false \
