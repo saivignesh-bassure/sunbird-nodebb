@@ -7,6 +7,7 @@ ENV NODE_ENV $NODE_ENV
 
 COPY NodeBB/install/package.json /usr/src/app/package.json
 COPY NodeBB/ /usr/src/app
+RUN npm config set legacy-peer-deps true
 RUN npm install --only=prod && \
     npm cache clean --force
 
